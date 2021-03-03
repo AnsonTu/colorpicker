@@ -3,9 +3,9 @@
     "productName": "colorpicker",
     "version": "2.0.4",
     "description": "Colorpicker is a little Electron app that can show colors with hex/rgb code, and generate shading for your color.",
-    "main": "src/main.js",
+    "main": "src/main.ts",
     "scripts": {
-        "start": "npx electron src/main.js",
+        "start": "npx electron src/main.ts",
         "standard": "standard",
         "test": "mocha",
         "pack": "electron-builder --dir",
