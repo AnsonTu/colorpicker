@@ -1,8 +1,11 @@
 'use strict'
+/*This file highlights the objects for the TouchBarButton */
 
+//require electron constant and touchbar
 const {TouchBar} = require('electron')
 const {TouchBarColorPicker, TouchBarButton} = TouchBar;
 
+//export the dir name and event emiter for touchbar
 module.exports = (dirname, eventEmitter) => {
   let colorpicker = new TouchBarColorPicker({
     change: color => eventEmitter.emit('changeColor', color)
@@ -20,6 +23,7 @@ module.exports = (dirname, eventEmitter) => {
     click: () => eventEmitter.emit('showPreferences')
   })
 
+//set a new object of touchbar to hold all parameters
   let touchbar = new TouchBar([colorpicker, eyedropper, colorsbook, settings])
 
   let get = () => touchbar
