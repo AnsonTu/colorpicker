@@ -28,16 +28,19 @@ class Colorpicker extends Color {
 
     this.setNewColor(config.color, true)
   }
-
+  
+  // Set color from RGB
   setNewRGBColor (rgb) {
     this.setNewColor(this.getHexFromRGB(rgb))
   }
 
+  // Set color from alpha
   setNewAlphaColor (alpha) {
     this.setAlpha(alpha)
     this.setNewColor(this.hex)
   }
 
+  // Set negative color from RGB
   setNegativeColor (rgb) {
     if (!rgb) rgb = this.rgb
     const negative = this.getNegativeColor(rgb)
@@ -45,6 +48,7 @@ class Colorpicker extends Color {
     return negative
   }
 
+  // Set new color from hex and restart timeout if dontSaveIt is False
   setNewColor (hex, dontSaveIt) {
     if (!dontSaveIt) {
       clearTimeout(this.timing)
@@ -78,6 +82,8 @@ class Colorpicker extends Color {
     }
   }
 
+  // Save color given by the hex number combination
+  // sends new color and new history to main process
   saveColor (hex) {
     let newHistory = []
     for (let i = 0; i < 9; i++) {
@@ -96,6 +102,8 @@ class Colorpicker extends Color {
 
   copyRGBA () { clipboard.writeText(this.getCSSFromRGBA(this.rgba)) }
 
+  // Change opacity according to oppacity button input
+  // Returns alpha
   toggleOpacity () {
     this.activeAlpha = document.querySelector('#opacity_button').classList.toggle('active')
     document.querySelector('.main').classList.toggle('opacity', this.activeAlpha)
@@ -114,6 +122,7 @@ class Colorpicker extends Color {
     return this.activeAlpha
   }
 
+  // Changes shading of current colour
   changeShading () {
     let shading = document.querySelectorAll('header .shades aside, header .tints aside, header .naturals aside')
     for (let shade of shading) {

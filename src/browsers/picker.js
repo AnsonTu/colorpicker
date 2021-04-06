@@ -1,5 +1,5 @@
 'use strict';
-
+// Picker window
 const { BrowserWindow } = require('electron');
 
 module.exports = (dirname, storage) => {

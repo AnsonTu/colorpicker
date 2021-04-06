@@ -5,6 +5,7 @@ class ContextMenu {
     this.window = remote.getCurrentWindow()
   }
 
+  // Opens meny according to the typy given
   openMenu (type) {
     let menu
     switch (type) {
@@ -15,6 +16,7 @@ class ContextMenu {
     menu.popup(this.window)
   }
 
+  // Menu options
   colorpickerMenu () {
     return [
       { label: 'Pin to Foreground', accelerator: 'CmdOrCtrl+F', click: () => togglePin() },
@@ -48,6 +50,7 @@ class ContextMenu {
     ]
   }
 
+  // Buttons types
   initButtonsType (type, name) {
     const appButtons = document.querySelector('#app_buttons')
     const minimize = document.querySelector('#minimize')
