@@ -1,8 +1,9 @@
 'use strict'
 
-let eventEmitter = require('events')
+let eventEmitter = require('events') //utilize event emitter to require events
 eventEmitter = new eventEmitter()
 
+//constant reuirements
 const {app, Tray, Menu} = require('electron')
 const storage = require('./storage')
 const touchbar = require('./touchbar')(__dirname, eventEmitter)
@@ -14,13 +15,16 @@ app.allowRendererProcessReuse = true
 
 require('./events')(storage, browsers, eventEmitter)
 
+//transparent visuals when the process platform is linux
 if (process.platform === 'linux') {
   app.commandLine.appendSwitch('enable-transparent-visuals')
   app.disableHardwareAcceleration()
 }
 
-let tray
-
+let tray 
+/*
+create tray to process multiple platforms (darwin, win32, linux)
+*/
 let createTray = () => {
   if (tray) return
   if (process.platform === 'darwin') tray = new Tray(`${__dirname}/ressources/tray-black@3x.png`)
@@ -31,7 +35,9 @@ let createTray = () => {
 }
 
 /**
-* [setMenu - set new app menu]
+* [setMenu - set new app menu
+* set up the template, edit, tools]
+*displayes options for preference, versions, control for appearance and shortcuts)
 * @return {void}
 */
 let setMenu = () => {
@@ -87,7 +93,7 @@ let setMenu = () => {
 }
 
 /**
-* [App ready - On app ready]
+* [App ready - On app ready -intalize tray and menue]
 */
 app.on('ready', () => {
   storage.init().then(() => {
@@ -98,14 +104,16 @@ app.on('ready', () => {
 })
 
 /**
-* [App activate - On app icon clicked]
+* [App activate -initalize colorpicker On app icon clicked]
 */
 app.on('activate', () => {
   colorpicker.init()
 })
 
 /**
-* [App window-all-closed - quit app on all window closed ]
+* [App window-all-closed 
+- quit app on all window closed ]
+refer to process platform 
 */
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

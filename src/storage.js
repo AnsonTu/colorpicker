@@ -1,5 +1,6 @@
 'use strict'
 
+//require electron constant for storage and dialog
 const electronStorage = require('electron-json-storage')
 const {dialog} = require('electron')
 
@@ -8,6 +9,7 @@ let storage, template, defaultStorage
 /**
  * [init - init storage]
  * @return {Promise} [promise when initialized]
+ *throuw for erros or resolve exsiting promise, else resort storage to existing storage
  */
 let init = () => (
   new Promise((resolve, reject) => (
