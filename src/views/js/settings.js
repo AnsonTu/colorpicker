@@ -122,6 +122,7 @@ function initTools(selectedTools) {
   // })
 }
 
+// Function that updates tools according to event
 function updateTools(event) {
   let toSave = []
   let tools = document.querySelectorAll('#selectedTools p')

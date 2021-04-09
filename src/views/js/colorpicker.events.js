@@ -44,7 +44,7 @@ ipcRenderer.on('changeTools', (event, tools) => {
   initToolsEvent()
 })
 
-
+// Initialize all tools
 function initTools (tools) {
   let html = ''
   let allTools = {
@@ -66,14 +66,19 @@ function initTools (tools) {
   document.querySelector('#tools').innerHTML = html
 }
 
+// Changes the color to the previous one
 function changeLastColor (color) {
   ipcRenderer.send('changeLastColor', color)
 }
 
+// Function to change the button positions
+// Input: new position
 function changebuttonsPosition (pos) {
   ipcRenderer.send('buttonsPosition', pos)
 }
 
+// Function to change the button type
+// Input: new type
 function changebuttonsType (type) {
   ipcRenderer.send('buttonsType', type)
 }
@@ -83,6 +88,7 @@ function togglePin () {
   ipcRenderer.send('setOnTop', bool)
 }
 
+// Function to change shading
 function toggleShading () {
   let bool = document.querySelector('#shade_button').classList.toggle('active')
   if (bool) cp.changeShading()
@@ -91,6 +97,7 @@ function toggleShading () {
   document.querySelector('header').classList.toggle('shading')
 }
 
+// Function that sets random colour
 function toggleRandom () {
   const r = Math.floor(Math.random() * 255) + 0
   const g = Math.floor(Math.random() * 255) + 0
@@ -98,16 +105,19 @@ function toggleRandom () {
   cp.setNewRGBColor([r, g, b])
 }
 
+// Function to change opacity
 function toggleOpacity () {
   let bool = cp.toggleOpacity()
   ipcRenderer.send('opacityActive', bool)
 }
 
+// Function that clears the toggle
 function toggleClean () {
   let bool = document.querySelector('#clean_button').classList.toggle('active')
   document.querySelector('body').classList.toggle('clean')
 }
 
+// Function to apply color
 function applyColor () {
   const regex = /(#(?:[\da-f]{3}){1,2}|rgb\((?:\d{1,3},\s*){2}\d{1,3}\)|rgba\((?:\d{1,3},\s*){3}\d*\.?\d+\))/ig
   let content = clipboard.readText()
@@ -119,6 +129,7 @@ function applyColor () {
   }
 }
 
+// Function that initializes tools 
 function initToolsEvent () {
   if (document.querySelector('#top_button')) document.querySelector('#top_button').onclick = () => togglePin()
   if (document.querySelector('#picker_button')) document.querySelector('#picker_button').onclick = () => ipcRenderer.send('launchPicker')
@@ -131,6 +142,7 @@ function initToolsEvent () {
   if (document.querySelector('#settings_button')) document.querySelector('#settings_button').onclick = () => ipcRenderer.send('showPreferences')
 }
 
+// Function that initializes all events
 function initEvents () {
   window.addEventListener('contextmenu', event => {
     cm.openMenu('colorpickerMenu')

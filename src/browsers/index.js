@@ -1,5 +1,5 @@
 'use strict'
-
+// Index pages of web app
 module.exports = (dirname, storage, util) => ({
   colorpicker: require('./colorpicker')(dirname, storage, util),
   colorsbook: require('./colorsbook')(dirname, storage, util),

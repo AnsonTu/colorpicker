@@ -23,6 +23,7 @@ ipcRenderer.on('changePosition', (event, position) => {
   else document.querySelector('.toolbar').classList.remove('setRight')
 })
 
+// Function that initializes color book
 function initColorsbook (colorsbook, activeAt) {
   let categories = ''
   for (let category in colorsbook) {
@@ -37,6 +38,8 @@ function initColorsbook (colorsbook, activeAt) {
   document.querySelector('#categories').innerHTML = categories
 }
 
+// Function that initializes colors
+// Input: list of colors to initialize
 function initColors (colors) {
   let list = ''
   for (let color of colors) {
@@ -61,6 +64,8 @@ function initColors (colors) {
   })
 }
 
+// Function that adds color
+// Input: new color to pus into list
 function addColor (color) {
   if(!categoryActive) categoryActive = Object.values(colorsbook).length - 1
   colorsbook[categoryActive].push(color);
@@ -69,6 +74,7 @@ function addColor (color) {
   saveColorsbook()
 }
 
+// Function that deletes a color
 function deleteColor () {
   let pos = colorsbook[categoryActive].indexOf(colorFocused);
   colorsbook[categoryActive].splice(pos, 1);
@@ -77,6 +83,8 @@ function deleteColor () {
   saveColorsbook()
 }
 
+// Function that adds category
+//Input: name of new category
 function addCategory (name) {
   colorsbook[name] = []
   categoryActive = name;
@@ -85,6 +93,7 @@ function addCategory (name) {
   saveColorsbook()
 }
 
+// Function that deletes color book category
 function deleteCategory () {
   delete colorsbook[categoryFocused]
   categoryActive = false
@@ -93,10 +102,12 @@ function deleteCategory () {
   saveColorsbook()
 }
 
+// Function that saves current color book
 function saveColorsbook () {
   ipcRenderer.send('save-colorsbook', colorsbook)
 }
 
+// Initializes events
 function initEvents () {
   let categories = document.querySelectorAll('#categories li')
   for (let category of categories) {

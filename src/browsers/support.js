@@ -1,5 +1,5 @@
 'use strict'
-
+// Support window
 const {BrowserWindow} = require('electron')
 
 module.exports = (dirname, storage) => {
