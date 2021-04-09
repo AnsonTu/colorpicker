@@ -2,7 +2,10 @@
     "compilerOptions": {
         "allowJs": true,
         "target": "ES5",
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "esModuleInterop": true
     },
     "include": ["./src/**/*"]
 }

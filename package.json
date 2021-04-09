@@ -4,6 +4,7 @@
     "version": "2.0.4",
     "description": "Colorpicker is a little Electron app that can show colors with hex/rgb code, and generate shading for your color.",
     "main": "src/main.ts",
+    "type": "module",
     "scripts": {
         "start": "npx electron src/main.ts",
         "standard": "standard",
@@ -36,7 +37,8 @@
         "request": "^2.88.2",
         "robotjs": "git+https://github.com/Toinane/robotjs",
         "sortablejs": "^1.10.2",
-        "tippy.js": "^6.1.1"
+        "tippy.js": "^6.1.1",
+        "typescript": "^4.2.3"
     },
     "optionalDependencies": {
         "osx-mouse": "git+https://github.com/Toinane/osx-mouse",
