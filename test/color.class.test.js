@@ -369,7 +369,22 @@ describe('test case for hue change functions', ()=>{
     });
 
     // natural from rgb
-    // it('natural from rbg should be #bd524c', ()=>{
-    //     expect(cp.getChangeHueFromHex(10,'#bd4d5a')).to.be.equal('#BD524C');
-    // });
+    let tests = [
+        {pct: 10, in:[94,60,207], out:[127, 77, 214]},
+        {pct: 100, in:[170, 78, 207], out:[255,255,255]},
+        {pct: -100, in:[84,59,56], out:[0,0,0]},
+        {pct: 50, in:[6,26,8], out:[0,0,0]},
+        {pct: -50, in:[213,237,242], out:[255,255,255]},
+        {pct: 10, in:[102,119,128], out:[87,105,120]}, //rounding error
+        {pct: -10, in:[102,119,128], out:[120,134,138]},
+        {pct: 10, in:[84,67,61], out:[92,80,73]}, //rounding error
+        {pct: -10, in:[112,81,112], out:[97,66,102]}
+    ];
+    tests.forEach(t => {
+        it(`natural for ${t.in} from rbg should be ${t.out}`, ()=>{
+            // let rgb = cp.getRGBFromHSV()
+            // console.log(rgb);
+            expect(cp.getNaturalFromRGB(t.pct, t.in)).to.be.eql(t.out);
+        }); 
+    });
 });

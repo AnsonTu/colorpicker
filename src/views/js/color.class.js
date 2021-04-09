@@ -293,7 +293,7 @@ class Color {
 
   setChangeHueFromHSL (degrees, hsl) {
     hsl = this.getChangeHueFromHSL(degrees, hsl)
-    this.setColorFromHSL(hsl)
+    this.setColorFromRGB(hsl)
     return hsl
   }
 
@@ -343,8 +343,7 @@ class Color {
     else if (h < 0) h += 360
 
     if (hsv[0] > 240 || hsv[0] < 60) {
-      if (percent > 0) s -= 0.7 * percent
-      else s -= 0.7 * percent
+      s -= 0.7 * percent
       if (s > 100) s = 100
       else if (s < 0) s = 0
 
@@ -353,8 +352,7 @@ class Color {
       if (v > 100) v = 100
       else if (v < 0) v = 0
     } else {
-      if (percent > 0) s += 0.7 * percent
-      else s += 0.7 * percent
+      s += 0.7 * percent
       if (s > 100) s = 100
       else if (s < 0) s = 0
 
